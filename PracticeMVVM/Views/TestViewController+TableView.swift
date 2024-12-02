@@ -11,6 +11,7 @@ import UIKit
 
 extension TestViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("No of rows in section", viewModel.numberOfRows(in: section))
         return viewModel.numberOfRows(in: section)
     }
     

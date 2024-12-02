@@ -24,18 +24,13 @@ class TestViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-    }
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated) // Call super to ensure proper lifecycle behavior
-
-        viewModel.getData {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        
+        viewModel.getData { [weak self] in
+                DispatchQueue.main.async {
+                    print("View Model count is", self?.viewModel.numberOfRows(in: 0) ?? 0)
+                    self?.tableView.reloadData()
+                }
             }
-        }
+        
     }
-
-
 }
